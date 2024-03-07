@@ -11,25 +11,31 @@ This is a Ruby application that simulates a toy robot moving on a square tableto
 First, clone the repository:
 
 ```sh
-git clone <repository_url>
-cd toy_robot
+git clone git@github.com:lsamon/dash-toy-robot.git
+cd dash-toy-robot
 ```
 
 Then, install the dependencies:
 
-`bundle install`
+```sh
+bundle install
+```
 
 **Running the Application**
 You can run the application with:
 
-`ruby application.rb`
+```sh
+ruby application.rb
+```
 
 This will start the application and you can begin issuing commands to the robot.
 
 **Running the Tests**
 You can run the tests with:
 
-`bundle exec rspec`
+```sh
+bundle exec rspec
+```
 
 **Commands**
 
