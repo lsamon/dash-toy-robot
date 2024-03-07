@@ -4,7 +4,7 @@ This is a Ruby application that simulates a toy robot moving on a square tableto
 
 ## Prerequisites
 
-- Ruby 3.2.0
+Ruby version used is **3.2.0**, however the code is not too special to work with Ruby version from 2.6 and above
 
 ## Setup
 

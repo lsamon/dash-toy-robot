@@ -30,7 +30,7 @@ class Application
       command, *args = input.split
 
       if command == 'exit'
-        puts 'Goodbye!'
+        puts "\nGoodbye!"
         break
       end
 
@@ -46,6 +46,9 @@ class Application
       end
 
       command_processor.call(input)
+    rescue SignalException
+      puts "\n\nGoodbye!"
+      break
     end
   end
 end
