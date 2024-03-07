@@ -6,35 +6,29 @@ class Robot
   def initialize(board)
     @board = board
     @x = @y = @direction = nil
+    @placed = false
   end
 
   def place(x, y, direction)
     if board.valid_position?(x, y) && DIRECTIONS.include?(direction)
       @x, @y, @direction = x, y, direction
+      @placed = true
     end
   end
 
   def not_placed?
-    @x.nil? && @y.nil? && @direction.nil?
+    !@placed
   end
 
   def placed?
-    !not_placed?
+    @placed
   end
 
   def move
     return if not_placed?
 
-    case @direction
-    when 'NORTH'
-      @y += 1 if board.valid_position?(@x, @y + 1)
-    when 'EAST'
-      @x += 1 if board.valid_position?(@x + 1, @y)
-    when 'SOUTH'
-      @y -= 1 if board.valid_position?(@x, @y - 1)
-    when 'WEST'
-      @x -= 1 if board.valid_position?(@x - 1, @y)
-    end
+    move_direction = move_methods.fetch(@direction, nil)
+    move_direction&.call
   end
 
   def left
@@ -55,5 +49,40 @@ class Robot
     return if not_placed?
 
     "#{@x},#{@y},#{@direction}"
+  end
+
+  private
+
+  def move_methods
+    {
+      'NORTH' => Proc.new { move_north },
+      'EAST'  => Proc.new { move_east },
+      'SOUTH' => Proc.new { move_south },
+      'WEST'  => Proc.new { move_west }
+    }
+  end
+
+  def move_north
+    return unless board.valid_position?(@x, @y + 1)
+
+    @y += 1
+  end
+
+  def move_east
+    return unless board.valid_position?(@x + 1, @y)
+
+    @x += 1
+  end
+
+  def move_south
+    return unless board.valid_position?(@x, @y - 1)
+
+    @y -= 1
+  end
+
+  def move_west
+    return unless board.valid_position?(@x - 1, @y)
+
+    @x -= 1
   end
 end
