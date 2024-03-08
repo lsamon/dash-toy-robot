@@ -1,6 +1,7 @@
 require 'rspec'
 require_relative '../lib/command_processor'
 require_relative '../lib/robot'
+require_relative '../lib/board'
 
 describe CommandProcessor do
   let(:board) { Board.new(5, 5) }
