@@ -10,6 +10,8 @@ class Robot
   end
 
   def place(x, y, direction)
+    return if placed?
+
     if board.valid_position?(x, y) && DIRECTIONS.include?(direction)
       @x, @y, @direction = x, y, direction
       @placed = true

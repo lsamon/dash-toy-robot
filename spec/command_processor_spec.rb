@@ -10,16 +10,8 @@ describe CommandProcessor do
 
   describe '#call' do
     context 'when the command is PLACE' do
-      it 'places the robot on the board if it is not already placed' do
-        expect(robot).to receive(:placed?).and_return(false)
+      it 'places the robot on the board' do
         expect(robot).to receive(:place).with(1, 2, 'NORTH')
-
-        command_processor.call('PLACE 1,2,NORTH')
-      end
-
-      it 'does not place the robot on the board if it is already placed' do
-        expect(robot).to receive(:placed?).and_return(true)
-        expect(robot).not_to receive(:place)
 
         command_processor.call('PLACE 1,2,NORTH')
       end

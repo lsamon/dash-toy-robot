@@ -10,8 +10,6 @@ class CommandProcessor
 
     case command
     when 'PLACE'
-      return if robot.placed?
-
       x, y, direction = args.first.split(',')
       robot.place(x.to_i, y.to_i, direction)
     when 'MOVE'
